@@ -1,0 +1,124 @@
+html {
+  height: 100%;
+  width: 100%;
+  background-color: #fffefa;
+  margin-left: 0.2em;
+}
+
+
+.coolinput {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: static;
+  /*max-width: 240px;*/
+}
+
+.coolinput label.text {
+  font-family: 'IBMPlexSansKR-Regular';
+  font-size: 0.75rem;
+  color: #818CF8;
+  font-weight: 700;
+  position: relative;
+  top: 0.5rem;
+  margin: 0 0 0 7px;
+  padding: 0 3px;
+  background: #fffefa;
+  width: fit-content;
+}
+
+.coolinput textarea {
+  padding: 11px 10px;
+  font-size: 0.9em;
+  border: 2px #818CF8 solid;
+  border-radius: 5px;
+  background: #fffefa;
+  resize: none;
+  height: 24em;
+  margin-bottom: 2em;
+  font-family: 'IBMPlexSansKR-Regular';
+  line-height: 1.6em;
+}
+
+.textInput:onclick {
+  box-shadow: none;
+}
+
+.coolinput input[type=text].input:focus {
+  outline: none;
+}
+
+.calButton {
+    height: 4em;
+    width: 13em;
+    padding: 1.3em 0px;
+    border-radius: 18px;
+    cursor: pointer;
+    border: 0;
+    background-color: #ffa502;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 18.5px;
+    /* text-transform: uppercase; */
+    font-size: 0.9em;
+    transition: all 0.5s ease;
+}
+
+.calButton:hover {
+  letter-spacing: 3px;
+  background-color: #f7b731;
+  color: hsl(0, 0%, 100%);
+  box-shadow: #f7b731 0px 7px 29px 0px;
+}
+
+.calButton:active {
+  letter-spacing: 3px;
+  background-color: #cc9828;
+  color: hsl(0, 0%, 100%);
+  box-shadow: #f7b731 0px 0px 0px 0px;
+  transform: translateY(5px);
+  transition: 100ms;
+}
+
+.result {
+  font-family: 'Danjo-bold-Regular';
+  font-size: 1.8em;
+  margin-bottom: 0px;
+  margin-top: 0.8em;
+  transform: translateY(10px);
+  transition: 300ms ease-out;
+}
+
+.result:hover {
+  font-size: 2em;
+  letter-spacing: 3px;
+  transform: translateY(10px);
+  transition: 300ms ease-in-out;
+}
+
+.progress {
+  font-family: 'IBMPlexSansKR-Regular';
+  font-weight: 200;
+  margin-top: 10px;
+  margin-bottom: 0.4em;
+}
+
+h5 {
+  font-family: 'IBMPlexSansKR-Regular';
+  font-weight: 200;
+  color: grey;
+  margin-bottom: 5px;
+}
+
+@font-face {
+  font-family: 'Danjo-bold-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Danjo-bold-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+
+
+  @font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
