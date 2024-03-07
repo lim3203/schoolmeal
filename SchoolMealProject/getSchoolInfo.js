@@ -13,9 +13,8 @@ const API_KEY = "4fc5c967cc2d4ee0943aa17e3a78d7a7",
   HTMLtitle_D = document.querySelector(".dinnerTitle"),
   HTMLmenuTitle = document.querySelector(".menuTitle"),
   morningButton = document.querySelector(".morningButton"),
-  date = new Date(),
-  tomorrowDate = new Date(date.setDate(date.getDate()+1));
-  
+  date = new Date();
+
   
 let API_DATE = "20210319",
   schoolmealInfo_M = "",
@@ -33,9 +32,12 @@ let API_DATE = "20210319",
 function getDateInfo(){
   if (date.getHours()<19){
     API_DATE =`${date.getFullYear()}${date.getMonth()+1 > 9 ? date.getMonth()+1 : `0${date.getMonth()+1}`}${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate() }`;
+    console.log("today");
   } else {
-    API_DATE =`${tomorrowDate.getFullYear()}${tomorrowDate.getMonth()+1 > 9 ? tomorrowDate.getMonth()+1 : `0${tomorrowDate.getMonth()+1}`}${tomorrowDate.getDate() < 10 ? `0${tomorrowDate.getDate()}` : tomorrowDate.getDate() }`;
+    date.setDate(date.getDate()+1);
+    API_DATE =`${date.getFullYear()}${date.getMonth()+1 > 9 ? date.getMonth()+1 : `0${date.getMonth()+1}`}${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate() }`;
     HTMLmenuTitle.innerHTML= `내일의 급식`;
+    console.log("tomorrow");
   }
   console.log(API_DATE);
 }
