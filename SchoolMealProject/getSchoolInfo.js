@@ -11,8 +11,11 @@ const API_KEY = "4fc5c967cc2d4ee0943aa17e3a78d7a7",
   HTMLtitle_M = document.querySelector(".morningTitle"),
   HTMLtitle_L = document.querySelector(".lunchTitle"),
   HTMLtitle_D = document.querySelector(".dinnerTitle"),
+  HTMLmenuTitle = document.querySelector(".menuTitle"),
   morningButton = document.querySelector(".morningButton"),
-  date = new Date();
+  date = new Date(),
+  tomorrowDate = new Date(date.setDate(date.getDate()+1));
+  
   
 let API_DATE = "20210319",
   schoolmealInfo_M = "",
@@ -24,10 +27,17 @@ let API_DATE = "20210319",
   API_MMEAL = "중식",
   koScName = '0',
   dayOfWeek = '',
+  tomorrowButtonStatus = 0,
   morningButtonStatus = "0";
 
 function getDateInfo(){
-  API_DATE =`${date.getFullYear()}${date.getMonth()+1 > 9 ? date.getMonth()+1 : `0${date.getMonth()+1}`}${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate() }`;
+  if (date.getHours()<19){
+    API_DATE =`${date.getFullYear()}${date.getMonth()+1 > 9 ? date.getMonth()+1 : `0${date.getMonth()+1}`}${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate() }`;
+  } else {
+    API_DATE =`${tomorrowDate.getFullYear()}${tomorrowDate.getMonth()+1 > 9 ? tomorrowDate.getMonth()+1 : `0${tomorrowDate.getMonth()+1}`}${tomorrowDate.getDate() < 10 ? `0${tomorrowDate.getDate()}` : tomorrowDate.getDate() }`;
+    HTMLmenuTitle.innerHTML= `내일의 급식`;
+  }
+  console.log(API_DATE);
 }
 
 function to_date(date_str)
@@ -68,7 +78,7 @@ function getMenuAPI(){
 	  HTMLschoolmeal_L.innerHTML = schoolmealInfo_L;
 	  schoolmealInfo_D = json.mealServiceDietInfo[1].row[2].DDISH_NM;
 	  calInfo_D = json.mealServiceDietInfo[1].row[2].CAL_INFO;
-      console.log(json.mealServiceDietInfo);
+      //console.log(json.mealServiceDietInfo);
 	
 	  //HTMLtitle_M.innerHTML = `아침 | ${calInfo_M}`;
 	  HTMLtitle_D.innerHTML = `저녁 | ${calInfo_D}`;
@@ -113,6 +123,18 @@ function showMorningMenu(){
 			HTMLschoolmeal_M.innerHTML = "";
 		}
 	})
+  document.querySelector(".tomorrowButton").addEventListener('click', ()=>{
+    if (tomorrowButtonStatus == 0){
+      tomorrowButtonStatus = 1;
+      getDateInfo();
+      getMenuAPI();
+    } else {
+      tomorrowButtonStatus = 0;
+      getDateInfo();
+      getMenuAPI();
+    }
+    console.log(tomorrowButtonStatus);
+  })
 }
 
 function init(){
