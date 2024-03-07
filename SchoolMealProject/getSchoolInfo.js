@@ -123,7 +123,7 @@ function showMorningMenu(){
 			HTMLschoolmeal_M.innerHTML = "";
 		}
 	})
-  document.querySelector(".tomorrowButton").addEventListener('click', ()=>{
+  /*document.querySelector(".tomorrowButton").addEventListener('click', ()=>{
     if (tomorrowButtonStatus == 0){
       tomorrowButtonStatus = 1;
       getDateInfo();
@@ -134,7 +134,7 @@ function showMorningMenu(){
       getMenuAPI();
     }
     console.log(tomorrowButtonStatus);
-  })
+  })*/
 }
 
 function init(){
