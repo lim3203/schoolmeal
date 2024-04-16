@@ -31,6 +31,8 @@ body{
     margin: 3em;
     padding-left: 30px;
     padding-right: 30px;
+    margin-left: 0;
+    margin-right: 0;
     width: 33%;
 }
 
@@ -49,7 +51,7 @@ body{
 .Clock {
     margin-top: 0.2em;
     font-family: 'LINESeedKR-Rg';
-    font-size: 4em;
+    font-size: 80px;
     font-weight: 400;
     margin-bottom: 0em;
     text-shadow:  1px 1px 23px #b5b5b5;
@@ -82,7 +84,8 @@ body{
     margin-right: 60px;
     margin-top: 20px;
     font-size: 30px;
-    font-family: 'LineLINESeedKR-Th';
+    font-family: 'LINESeedKR-Th';
+    font-weight: 300;
 }
 
 h2{
