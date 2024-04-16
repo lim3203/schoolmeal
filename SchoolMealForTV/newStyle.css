@@ -82,6 +82,7 @@ body{
     margin-right: 60px;
     margin-top: 20px;
     font-size: 30px;
+    font-family: 'LineLINESeedKR-Th';
 }
 
 h2{
@@ -109,6 +110,7 @@ h5 {
     font-size: 2em;
     font-family: 'LINESeedKR-Rg';
     margin-bottom: 0.3em;
+    color:#515C3D;
 }
 
 
@@ -122,5 +124,11 @@ h5 {
 @font-face {
     font-family: 'LINESeedKR-Rg';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
+    font-style: normal;
+}
+ 
+@font-face {
+    font-family: 'LINESeedKR-Th';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Th.woff2') format('woff2');
     font-style: normal;
 }
