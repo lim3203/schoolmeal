@@ -36,7 +36,7 @@ function getDateInfo(){
   } else {
     date.setDate(date.getDate()+1);
     API_DATE =`${date.getFullYear()}${date.getMonth()+1 > 9 ? date.getMonth()+1 : `0${date.getMonth()+1}`}${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate() }`;
-    HTMLmenuTitle.innerHTML= `내일의 급식`;
+    //HTMLmenuTitle.innerHTML= `내일의 급식`;
     console.log("tomorrow");
   }
   console.log(API_DATE);
