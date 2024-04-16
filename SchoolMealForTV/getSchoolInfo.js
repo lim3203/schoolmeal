@@ -148,7 +148,7 @@ function getMenuAPI(){
 
 function init(){
   getDateInfo();
-  //getMenuAPI(); //디자인 작업을 위해 일시적 중단.ㄴ
+ getMenuAPI(); //디자인 작업을 위해 일시적 중단.ㄴ
   //showMorningMenu();
 }
 
