@@ -31,6 +31,12 @@ function updateClock() {
     clockDisplay.textContent = `${hours}시 ${minutes}분`;
     const clockDisplaySec = document.querySelector('.ClockSecond');
     clockDisplaySec.textContent = `${seconds}초`;
+    if(now.getMinutes()%10 == 0){
+        timeAPI();
+    }
+    if(now.getMinutes()==38){
+        location.reload(true);
+    }
 }
 
 
