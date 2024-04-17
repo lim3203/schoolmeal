@@ -2,7 +2,7 @@ let apiDate = 0;
 let now = new Date();
 
 function timeAPI(){
-    fetch(`https://worldtimeapi.org/api/timezone/Asia/Seoul    `)
+    fetch(`https://worldtimeapi.org/api/timezone/Asia/Seoul`)
     .then(function(response){
         return response.json();
     })
