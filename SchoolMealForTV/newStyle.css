@@ -1,6 +1,6 @@
 
 body{
-    background: linear-gradient(#ffd89cd9 30%, #19547b);
+    background: linear-gradient(#FFAFBD 30%, #ffc3a0);
     width: 100%;
     height: 1180px;
     padding: 30px;
@@ -29,13 +29,17 @@ body{
     flex-direction: row;
     justify-content: space-between;
     background-color: #f1e9db;
-    margin: 60px;
+    margin: 0;
     margin-top: 0px;
-    border-radius: 2em;
+    border-radius: 0;
     height: 590px;
     margin-bottom: 0;
     box-shadow:  1px 1px 60px #0000001c;
+}
 
+img{
+    z-index: -1;
+    height: auto;
 }
 
 .insideBox {
@@ -70,7 +74,7 @@ body{
     margin-top: 30px;
     margin-bottom: 0.2em;
     text-shadow: 1px 1px 23px #b5b5b5;
-    color: #4e5247;
+    color: #2c3e50;
 }
 
 .ClockSecond {
@@ -103,11 +107,11 @@ body{
     font-size: 30px;
     font-family: 'LINESeedKR-Th';
     font-weight: 300;
-    color: white;
+    color: black;
 }
 
 h2{
-    color:#515C3D;
+    color:#2c3e50;
 }
 
 h3 {
@@ -115,7 +119,7 @@ h3 {
     font-family: 'LINESeedKR-Bd';
     margin: 0;
     text-align: center;
-    color:#313a20;
+    color:#2c3e50;
 }
 
 h4 {
@@ -123,7 +127,7 @@ h4 {
     font-size: 40px;
     font-family: 'LINESeedKR-Rg';
     text-align: center;
-    color:#515C3D;
+    color:#2c3e50;
     line-height: 1.5em;
 }
 
@@ -131,7 +135,7 @@ h5 {
     font-size: 2em;
     font-family: 'LINESeedKR-Rg';
     margin-bottom: 0.3em;
-    color:#515C3D;
+    color:#2c3e50;
 }
 
 
