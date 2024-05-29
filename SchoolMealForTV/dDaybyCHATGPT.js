@@ -1,5 +1,5 @@
-const dDay = new Date("Nov 14, 2024 00:00:00"); // D-Day date
-const HTMLdDay = document.querySelector(".dDay");
+const dDay = new Date("May 29, 2024"); // D-Day date
+const HTMLdDay = document.querySelector(".dDay3");
 
 function getTimeRemaining(endtime) {
   const now = new Date().getTime();
@@ -25,7 +25,7 @@ function getTimeRemaining(endtime) {
 
 function updateCountdown() {
   const time = getTimeRemaining(dDay);
-  HTMLdDay.innerHTML = `${time.days}일 ${time.hours}시간 ${time.minutes}분 남았습니다`;
+  HTMLdDay.innerHTML = `D-${time.days}`;
 }
 
 setInterval(updateCountdown, 1000); // updates the countdown every second
