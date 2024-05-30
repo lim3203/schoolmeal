@@ -18,9 +18,10 @@ body{
 
 .titleFlex {
     display: flex;
-    flex-direction: row;
-    display: flex;
     justify-content: space-between;
+    /*flex-direction: row;
+    display: flex;
+    justify-content: space-between;*/
 }
 
 
@@ -30,7 +31,7 @@ body{
     justify-content: space-between;
     background-color: #f1e9db;
     margin: 0;
-    margin-top: 0px;
+    margin-top: -50px;
     border-radius: 0;
     height: 590px;
     margin-bottom: 0;
@@ -57,14 +58,25 @@ img{
     text-align: right;
     margin-bottom: 0;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-top: 0;
+    height: 400px;
+    
+}
+
+.clockDetail{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: -60px;
 }
 
 .dDayBox {
     margin: 3em;
     margin-left: 60px;
     margin-bottom: 0;
+    display: flex;
+    flex-direction: row;
 }
 
 .Clock {
@@ -96,8 +108,13 @@ img{
 
 .dDay {
     font-family: 'LINESeedKR-Bd';
-    font-size: 3em;
+    font-size: 6em;
     margin: 0;
+}
+
+.d{
+    margin-right:3em;
+    margin-bottom: 0;
 }
 
 .info{
@@ -136,6 +153,16 @@ h5 {
     font-family: 'LINESeedKR-Rg';
     margin-bottom: 0.3em;
     color:#2c3e50;
+}
+
+.ampm{
+    margin-top: 0;
+    font-size: 3em;
+}
+
+.CSSdate{
+    margin-top: 0;
+    font-size: 3em;
 }
 
 
