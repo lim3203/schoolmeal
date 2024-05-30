@@ -37,7 +37,7 @@ function updateClock() {
     const clockDisplay = document.querySelector('.Clock');
     clockDisplay.textContent = `${hours}시 ${minutes}분`;
     const ampm_indicator = document.querySelector('.ampm');
-    ampm_indicator.textContent = `${am_pm}`;
+    //ampm_indicator.textContent = `${am_pm}`;
     const clockDisplaySec = document.querySelector('.secProgress');
     clockDisplaySec.value = `${seconds}`;
     //clockDisplaySec.textContent = `${seconds}초`;
