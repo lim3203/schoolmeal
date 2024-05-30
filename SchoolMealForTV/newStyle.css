@@ -13,7 +13,18 @@ body{
     padding: 0;
     margin: 0;
     height: 40px;
+    appearance: none;
+}
+
+.secProgress::-webkit-progress-bar{
+    background: #f0f0f078;
     transition: width 0.3s ease-in-out;
+}
+
+.secProgress::-webkit-progress-value{
+    transition: width 0.7s ease-in-out;
+    border-radius: 3em;
+    background: #2c3e50;
 }
 
 .titleFlex {
