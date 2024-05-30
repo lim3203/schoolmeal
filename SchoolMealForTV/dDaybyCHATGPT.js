@@ -1,31 +1,30 @@
-const dDay = new Date("Nov 14, 2024 00:00:00"); // D-Day date
-const HTMLdDay = document.querySelector(".dDay");
+const dDay1 = new Date("Jun 27, 2024"), // 내신
+dDay2 = new Date("Jun 4, 2024"), // 모고
+dDay3 = new Date("Nov 11, 2024"), // 수능
+HTMLdDay1 = document.querySelector(".d1"),
+HTMLdDay2 = document.querySelector(".d2"),
+HTMLdDay3 = document.querySelector(".d3");
 
 function getTimeRemaining(endtime) {
   const now = new Date().getTime();
   const t = endtime - now;
-  if (t <= 0) {
-    return {
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      //seconds: 0
-    };
-  }
-  const minutes = Math.floor((t / 1000 / 60) % 60);
-  const hours = Math.floor((t / (1000 * 60 * 60)) % 24);
   const days = Math.floor(t / (1000 * 60 * 60 * 24));
+  console.log(t,days);
   return {
-    days,
-    hours,
-    minutes,
-    //seconds
+    days
   };
 }
 
 function updateCountdown() {
-  const time = getTimeRemaining(dDay);
-  HTMLdDay.innerHTML = `${time.days}일 ${time.hours}시간 ${time.minutes}분 남았습니다`;
+  let time = getTimeRemaining(dDay1);
+  HTMLdDay1.innerHTML = `${time.days + 1}일`;
+  time = getTimeRemaining(dDay2);
+  HTMLdDay2.innerHTML = `${time.days + 1}일`;
+  time = getTimeRemaining(dDay3);
+  HTMLdDay3.innerHTML = `${time.days + 1}일`;
+  
 }
 
-setInterval(updateCountdown, 1000); // updates the countdown every second
+updateCountdown();
+
+//setInterval(updateCountdown, 1000); // updates the countdown every second

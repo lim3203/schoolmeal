@@ -15,7 +15,7 @@ function timeAPI(){
 
 
 let n = 0;
-let am_pm = 0;
+//let am_pm = 0;
 
 function updateClock() {
     now.setSeconds(now.getSeconds()+1);
@@ -24,10 +24,10 @@ function updateClock() {
     let hours;
     if (now.getHours()>12){
         hours = String(now.getHours()-12).padStart(2, '0');
-        am_pm = "오후";
+        //am_pm = "오후";
     } else {
         hours = String(now.getHours()).padStart(2, '0');
-        am_pm = "오전";
+        //am_pm = "오전";
     }
     let minutes = String(now.getMinutes()).padStart(2, '0');
     let seconds = String(now.getSeconds());
