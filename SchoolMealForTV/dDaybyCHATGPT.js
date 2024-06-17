@@ -1,6 +1,6 @@
 const dDay1 = new Date("Jun 27, 2024"), // 내신
 dDay2 = new Date("Jun 4, 2024"), // 모고
-dDay3 = new Date("Nov 11, 2024"), // 수능
+dDay3 = new Date("Nov 14, 2024"), // 수능
 HTMLdDay1 = document.querySelector(".d1"),
 HTMLdDay2 = document.querySelector(".d2"),
 HTMLdDay3 = document.querySelector(".d3");
