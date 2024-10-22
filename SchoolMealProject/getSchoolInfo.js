@@ -1,8 +1,9 @@
-const API_KEY = "4fc5c967cc2d4ee0943aa17e3a78d7a7",
+const ajfajdi = "4fc5c967",
   API_EDUCODE = "Q10",
   API_SCHOOLCODE = "8490325",
   stGrade = "1",
   claNumber = localStorage.getItem("CLANUM"),
+  fjfjfjfei = "cc2d4ee0943",
   subTitle =  document.querySelector(".subTitle"),
   cssDate = document.querySelector(".CSSdate"),
   HTMLschoolmeal_M = document.querySelector(".schoolmeal_M"),
@@ -10,6 +11,7 @@ const API_KEY = "4fc5c967cc2d4ee0943aa17e3a78d7a7",
   HTMLschoolmeal_D = document.querySelector(".schoolmeal_D"),
   HTMLtitle_M = document.querySelector(".morningTitle"),
   HTMLtitle_L = document.querySelector(".lunchTitle"),
+  sjlifj33 = "aa17e3a",
   HTMLtitle_D = document.querySelector(".dinnerTitle"),
   HTMLmenuTitle = document.querySelector(".menuTitle"),
   morningButton = document.querySelector(".morningButton"),
@@ -18,6 +20,7 @@ const API_KEY = "4fc5c967cc2d4ee0943aa17e3a78d7a7",
   
 let API_DATE = "20210319",
   schoolmealInfo_M = "",
+  ffieie = "78d7a7",
   schoolmealInfo_L = 0,
   schoolmealInfo_D = 0,
   calInfo_M = "",
@@ -27,7 +30,8 @@ let API_DATE = "20210319",
   koScName = '0',
   dayOfWeek = '',
   tomorrowButtonStatus = 0,
-  morningButtonStatus = "0";
+  morningButtonStatus = "0",
+  afelijfs = ajfajdi+fjfjfjfei+sjlifj33+ffieie;
 
 function getDateInfo(){
   if (date.getHours()<19){
@@ -64,7 +68,7 @@ function weekendCheck(date){
 }
 
 function getMenuAPI(){
-  fetch(`https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=${API_KEY}&Type=json&ATPT_OFCDC_SC_CODE=${API_EDUCODE}&SD_SCHUL_CODE=${API_SCHOOLCODE}&MMEAL_SC_NM=${API_MMEAL}&MLSV_YMD=${API_DATE}`)
+  fetch(`https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=${afelijfs}&Type=json&ATPT_OFCDC_SC_CODE=${API_EDUCODE}&SD_SCHUL_CODE=${API_SCHOOLCODE}&MMEAL_SC_NM=${API_MMEAL}&MLSV_YMD=${API_DATE}`)
   .then(function(response){
     return response.json();
   })
