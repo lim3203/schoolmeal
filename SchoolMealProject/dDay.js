@@ -26,7 +26,7 @@ function getTimeRemaining(endtime) {
 
 function updateCountdown() {
   const time = getTimeRemaining(dDay);
-  HTMLdDay.innerHTML = `11.14 2025학년도 대학수학능력시험까지 </br> ${time.days}일 ${time.hours}시간 ${time.minutes}분 ${time.seconds}초 남았습니다!`;
+  HTMLdDay.innerHTML = `11.13 2026학년도 대학수학능력시험까지 </br> ${time.days}일 ${time.hours}시간 ${time.minutes}분 ${time.seconds}초 남았습니다!`;
 }
 
 setInterval(updateCountdown, 1000); // updates the countdown every second
