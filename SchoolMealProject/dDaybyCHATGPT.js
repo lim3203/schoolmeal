@@ -1,4 +1,4 @@
-const dDay = new Date("Nov 14, 2024 00:00:00"); // D-Day date
+const dDay = new Date("Nov 13, 2025 00:00:00"); // D-Day date
 const HTMLdDay = document.querySelector(".dDay");
 
 function getTimeRemaining(endtime) {
