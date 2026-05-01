@@ -1,18 +1,21 @@
-const HTMLtextInput = document.querySelector(".gSearch"),
-HTMLgSearchButton = document.querySelector(".gSearchButton");
+(function() {
+  const searchInput = document.querySelector(".gSearch");
+  const searchButton = document.querySelector(".gSearchButton");
 
-let HTMLinput = 0;
+  function performSearch() {
+    const query = searchInput.value.trim();
+    if (query) {
+      const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+      window.open(url, "_blank");
+    }
+  }
 
-function init(){
-	HTMLgSearchButton.addEventListener("click", () => {
-		HTMLinput = HTMLtextInput.value;
-		const url = `https://www.google.com/search?q=${HTMLinput}`;
-		window.open(url, "_blank");		
-	});
-	
-	HTMLgSearchButton.addEventListener("keydown", evt => {
-  		if (evt.code === "Enter") evt.preventDefault();
-	});
-}
+  searchButton.addEventListener("click", performSearch);
 
-init();
+  searchInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      performSearch();
+    }
+  });
+})();

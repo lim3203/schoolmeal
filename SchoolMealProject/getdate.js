@@ -1,16 +1,19 @@
-const date1 = new Date(),
-	  dateHtml = document.querySelector(".CSSdate");
+(function() {
+  const dateHtmlElements = document.querySelectorAll(".CSSdate");
+  const now = new Date();
 
-let Ndate = "0";
+  function formatDisplayDate(date) {
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${month}월 ${day}일`;
+  }
 
+  function updateDateDisplay() {
+    const formattedDate = formatDisplayDate(now);
+    dateHtmlElements.forEach(el => {
+      el.innerHTML = formattedDate;
+    });
+  }
 
-function init(){
-	 Ndate = `${date.getMonth()+1 > 9 ? date.getMonth()+1 : `0${date.getMonth()+1}`}월 ${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate() }일`;
-	console.log(Ndate);
-	dateHtml.innerHTML = Ndate;
-}
-
-
-
-
-init();
+  updateDateDisplay();
+})();
