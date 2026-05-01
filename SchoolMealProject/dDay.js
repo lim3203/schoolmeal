@@ -16,7 +16,11 @@
 
   function updateCountdown() {
     const t = getTimeRemaining(targetDate);
-    displayElement.innerHTML = `11.19 2027학년도 대학수학능력시험까지<br/>${t.days}일 ${t.hours}시간 ${t.minutes}분 ${t.seconds}초 남았습니다!`;
+    displayElement.innerHTML = `
+      <div class="dDay-label">11.19 2027학년도 대학수학능력시험까지</div>
+      <div class="dDay-time"><strong>${t.days}</strong>일 <strong>${t.hours}</strong>시간 <strong>${t.minutes}</strong>분 <strong>${t.seconds}</strong>초</div>
+      <div class="dDay-suffix">남았습니다</div>
+    `;
   }
 
   updateCountdown();

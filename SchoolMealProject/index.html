@@ -1,97 +1,355 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>영산고 오늘의 급식</title>
-	  <meta name="description" content="영산고등학교 오늘의 급식정보입니다 :D">
-	  
-      <link rel="favicon" href="favicon.ico">
-	  <link rel="icon" href="favicon.ico" />
-	  <meta name="theme-color" content="#7ed6df">
-	  <link href="style.css" rel="stylesheet" type="text/css" />
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영산고 오늘의 급식 | New Concept</title>
+    <link rel="favicon" href="favicon.ico">
+    <link rel="icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #7ed6df;
+            --bg-gradient: linear-gradient(135deg, #f6e58d 0%, #7ed6df 100%);
+            --glass: rgba(255, 255, 255, 0.7);
+            --text-main: #2d3436;
+            --text-sub: #636e72;
+        }
 
-	  <meta name="google-adsense-account" content="ca-pub-3237583105055847">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', sans-serif;
+        }
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3237583105055847" crossorigin="anonymous"></script>
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            padding: 20px;
+        }
 
-	  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K52C9B70K1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 20px;
+        }
 
-  gtag('config', 'G-K52C9B70K1');
-</script>
-	 <meta name="google-site-verification" content="Ha5OUHNpxHfxp-TIO3lcyF-mJHHVmiz-EtUhaWnbu1Q" />
-  </head>
-  <body>
-    <h1 class="title">영산고등학교</h1>
-	  <h1 class="clock"></h1>
-	  <div class="mediaflex">
-      <div class="box">
-        <div class="flexbox">
-          <h4 class="menuTitle">오늘의 급식</h4>
-          <h4 class="CSSdate">00월 00일</h4>
-		  <!--<button class="tomorrowButton">내일</button>-->
-        </div>
-			<h3 class="morningFlex morning morningTitle">아침</h3>
-		    <button class="morningFlex morningButton">
-				OPEN
-		  </button>
-        	<h2 class="schoolmeal_M CSScontents"></h2>	  
-			<h3 class="lunchTitle">점심</h3>
-        	<h2 class="schoolmeal_L CSScontents">LOADING...</h2>
-			<h3 class="dinnerTitle">저녁</h3>
-        	<h2 class="schoolmeal_D CSScontents">LOADING...</h2>
-        </div>
-		
-		<div class="box">
-			<h3>
-				<h3 class="dDay dinnerTitle">  </h3>
-				<div class="flexbox verticalFlex">
-					<a href="https://yeongsan.hs.jne.kr/user/indexMain.action?siteId=yeongsan_hs"
-				title="영산고등학교 홈페이지" >영산고등학교 홈페이지</a>
-					<a href="../TextCountProject/index.html">BYTE 바이트계산기</a>
-				</div>
-				
-			</h3>
-			<h3 class="CSSdate">
-			</h3>
-			<h3>
-			  구글에 검색하기
-		  </h3>
-			<div class="flexbox">
-				<form>
-					
-					<input type='text' class="gSearch" placeholder="여기에 검색어를 입력!">
-		  		</form>
-		  		<button class="gSearchButton">검색</button>
-			</div>
-		 
-			
-			<h3 class="dDay"></h3>
-			
-			
-			
-		</div>
-		  
-		  <a href="https://hits.sh/schoolmealproject-auhvl.run.goorm.io/SchoolMealProject/index.html/" class="hits"><img alt="Hits" src="https://hits.sh/schoolmealproject-auhvl.run.goorm.io/SchoolMealProject/index.html.svg?style=flat-square&label=HITS&color=7ed6df&labelColor=f6e58d"/></a>
-    	  
-		
-    
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+        }
+
+        /* Glassmorphism Card Style */
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Header Section */
+        .header {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 0 30px;
+        }
+
+        .title-group h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #2d3436;
+        }
+
+        .today-date {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #636e72;
+        }
+
+        /* Meal Section */
+        .meal-card {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .meal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .menuTitle { font-size: 1.5rem; font-weight: 800; }
+        .CSSdate { font-size: 1.1rem; color: var(--text-sub); }
+
+        .meal-item {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding-bottom: 15px;
+        }
+
+        .meal-item:last-child { border: none; }
+
+        .meal-type {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .morning-toggle {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            cursor: pointer;
+        }
+
+        .CSScontents {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        /* Day Navigation */
+        .nav-card {
+            padding: 20px !important;
+        }
+
+        .nav-card h3 {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            color: var(--text-sub);
+            text-align: center;
+        }
+
+        .day-nav {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .day-btn {
+            padding: 10px 0;
+            border: none;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+
+        .day-btn:hover { background: rgba(255, 255, 255, 0.6); }
+        .day-btn.active { 
+            background: var(--primary); 
+            color: white; 
+            box-shadow: 0 4px 12px rgba(126, 214, 223, 0.4);
+        }
+
+        /* Side Section */
+        .side-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .dDay-box {
+            background: #2d3436;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        .dDay { width: 100%; }
+        .dDay-label { font-size: 0.8rem; opacity: 0.8; margin-bottom: 8px; }
+        .dDay-time { 
+            font-size: 1.4rem; 
+            font-weight: 400; 
+            margin-bottom: 5px;
+            font-variant-numeric: tabular-nums;
+        }
+        .dDay-time strong { 
+            font-size: 1.8rem; 
+            font-weight: 800; 
+            color: var(--primary); 
+        }
+        .dDay-suffix { font-size: 0.9rem; font-weight: 600; }
+
+        .search-box h3 { margin-bottom: 15px; font-size: 1.1rem; }
+        
+        .search-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .gSearch {
+            flex: 1;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            outline: none;
+        }
+
+        .gSearchButton {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            transition: 0.2s;
+        }
+
+        .links a:hover { background: rgba(255, 255, 255, 0.5); }
+        
+        /* 바이트계산기 강조 스타일 */
+        .links a.highlight {
+            background: linear-gradient(135deg, #f6e58d 0%, #9d7edf 100%);
+            color: var(--text-main);
+            box-shadow: 0 4px 15px rgba(126, 214, 223, 0.3);
+            border: none;
+        }
+        .links a.highlight:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        .footer-info {
+            margin-top: 15px;
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            line-height: 1.5;
+        }
+
+        .hits { margin-top: 10px; display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="title-group">
+                <h1>영산고등학교</h1>
+            </div>
+            <div class="today-date">0000년 00월 00일 요일</div>
+        </header>
+
+        <main class="card meal-card">
+            <div class="meal-header">
+                <h2 class="menuTitle">오늘의 급식</h2>
+                <span class="CSSdate">00월 00일</span>
+            </div>
+
+            <div class="meal-item">
+                <div class="meal-type">
+                    <span class="morningTitle">아침</span>
+                    <button class="morningButton morning-toggle">OPEN</button>
+                </div>
+                <div class="schoolmeal_M CSScontents"></div>
+            </div>
+
+            <div class="meal-item">
+                <div class="meal-type lunchTitle">점심</div>
+                <div class="schoolmeal_L CSScontents">LOADING...</div>
+            </div>
+
+            <div class="meal-item">
+                <div class="meal-type dinnerTitle">저녁</div>
+                <div class="schoolmeal_D CSScontents">LOADING...</div>
+            </div>
+
+            <p class="footer-info">
+                요리명에 표시된 번호는 알레르기 유발 식재료입니다 (1.난류, 2.우유, 3.메밀, 4.땅콩, 5.대두, 6.밀, 7.고등어, 8.게, 9.새우, 10.돼지고기, 11.복숭아, 12.토마토, 13.아황산염, 14.호두, 15.닭고기, 16.쇠고기, 17.오징어, 18.조개류)
+            </p>
+        </main>
+
+        <aside class="side-group">
+            <div class="card dDay-box">
+                <div class="dDay">LOADING D-DAY...</div>
+            </div>
+
+            <div class="card nav-card">
+                <h3>급식 확인하기</h3>
+                <div class="day-nav">
+                    <button class="day-btn" data-day="1">월</button>
+                    <button class="day-btn" data-day="2">화</button>
+                    <button class="day-btn" data-day="3">수</button>
+                    <button class="day-btn" data-day="4">목</button>
+                    <button class="day-btn" data-day="5">금</button>
+                    <button class="day-btn" data-day="6">토</button>
+                    <button class="day-btn" data-day="0">일</button>
+                </div>
+            </div>
+
+            <div class="card links">
+                <a href="https://yeongsan.hs.jne.kr/user/indexMain.action?siteId=yeongsan_hs" target="_blank">영산고등학교 홈페이지</a>
+                <a href="../TextCountProject/index.html" class="highlight">BYTE 바이트계산기</a>
+                <a href="https://hits.sh/schoolmealproject-auhvl.run.goorm.io/SchoolMealProject/index.html/" class="hits">
+                    <img alt="Hits" src="https://hits.sh/schoolmealproject-auhvl.run.goorm.io/SchoolMealProject/index.html.svg?style=flat-square&label=HITS&color=7ed6df&labelColor=f6e58d"/>
+                </a>
+            </div>
+
+            <div class="card search-box">
+                <h3>구글 검색</h3>
+                <div class="search-form">
+                    <input type="text" class="gSearch" placeholder="검색어 입력">
+                    <button class="gSearchButton">검색</button>
+                </div>
+            </div>
+        </aside>
     </div>
-	  <h5>
-				요리명에 표시된 번호는 알레르기를 유발할수 있는 식재료입니다 (1.난류, 2.우유, 3.메밀, 4.땅콩, 5.대두, 6.밀, 7.고등어, 8.게, 9.새우, 10.돼지고기, 11.복숭아, 12.토마토, 13.아황산염, 14.호두, 15.닭고기, 16.쇠고기, 17.오징어, 18.조개류(굴,전복,홍합 등)
-			</h5>
+
+    <!-- 기존 JS 로직 연동 -->
     <script src="getSchoolInfo.js"></script>
-	<script src="getdate.js"></script>
-	<script src="dDay.js"></script>
-	<script src="search.js"></script>
-	  
-	  
-	
-	  
-  </body>
+    <script src="getdate.js"></script>
+    <script src="dDay.js"></script>
+    <script src="search.js"></script>
+    <script>
+        function updateTodayDate() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+            document.querySelector('.today-date').innerText = now.toLocaleDateString('ko-KR', options);
+        }
+        updateTodayDate();
+    </script>
+</body>
 </html>

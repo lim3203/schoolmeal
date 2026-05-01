@@ -66,7 +66,7 @@ export default {
 1. Cloudflare Worker 상세 페이지 진입
 2. [Settings] -> [Variables] 클릭
 3. [Environment Variables] 섹션에서 [Add variable] 클릭
-4. Variable name: NEIS_API_KEY
+4. Variable name: 
 5. Value: 실제 API 키 입력
 6. [Encrypt] 버튼 클릭하여 암호화 (선택 사항이지만 권장)
 7. [Save and deploy] 클릭
