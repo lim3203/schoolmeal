@@ -1,4 +1,4 @@
-const NEIS_API_KEY = "REMOVEDREMOVEDREMOVEDaa1REMOVED"; // Combined parts
+const PROXY_URL = "https://schoolmealproject.sunglim3203.workers.dev";
 const API_EDUCODE = "Q10";
 const API_SCHOOLCODE = "8490325";
 
@@ -42,12 +42,7 @@ function isWeekend(dateStr) {
 }
 
 async function getMenuAPI() {
-  const API_MMEAL = "중식"; // The API seems to return all meals even if MMEAL_SC_NM is set to one? 
-  // Actually, checking the original code, it was fetching with MMEAL_SC_NM=중식 and then accessing row[0], row[1], row[2]
-  // Wait, if MMEAL_SC_NM is specified, it usually only returns that meal.
-  // Let's check the original fetch URL: ...&MMEAL_SC_NM=${API_MMEAL}&MLSV_YMD=${API_DATE}
-  
-  const url = `https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=${NEIS_API_KEY}&Type=json&ATPT_OFCDC_SC_CODE=${API_EDUCODE}&SD_SCHUL_CODE=${API_SCHOOLCODE}&MLSV_YMD=${API_DATE}`;
+  const url = `${PROXY_URL}?date=${API_DATE}`;
 
   try {
     const response = await fetch(url);
@@ -117,4 +112,3 @@ function initMealApp() {
 }
 
 initMealApp();
-

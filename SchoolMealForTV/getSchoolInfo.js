@@ -1,21 +1,19 @@
-const ajfajdi = "REMOVED",
-  API_EDUCODE = "Q10",
-  API_SCHOOLCODE = "8490325",
-  stGrade = "1",
-  fjfjfjfei = "REMOVED",
-  claNumber = localStorage.getItem("CLANUM"),
-  subTitle =  document.querySelector(".subTitle"),
-  cssDate = document.querySelector(".CSSdate"),
-  HTMLschoolmeal_M = document.querySelector(".schoolmeal_M"),
-  HTMLschoolmeal_L = document.querySelector(".schoolmeal_L"),
-  HTMLschoolmeal_D = document.querySelector(".schoolmeal_D"),
-  HTMLtitle_M = document.querySelector(".morningTitle"),
-  HTMLtitle_L = document.querySelector(".lunchTitle"),
-  sjlifj33 = "REMOVED",
-  HTMLtitle_D = document.querySelector(".dinnerT"),
-  HTMLmenuTitle = document.querySelector(".menuTitle"),
-  morningButton = document.querySelector(".morningButton"),
-  date = new Date();
+const PROXY_URL = "https://schoolmealproject.sunglim3203.workers.dev";
+const API_EDUCODE = "Q10";
+const API_SCHOOLCODE = "8490325";
+const stGrade = "1";
+const claNumber = localStorage.getItem("CLANUM");
+const subTitle =  document.querySelector(".subTitle");
+const cssDate = document.querySelector(".CSSdate");
+const HTMLschoolmeal_M = document.querySelector(".schoolmeal_M");
+const HTMLschoolmeal_L = document.querySelector(".schoolmeal_L");
+const HTMLschoolmeal_D = document.querySelector(".schoolmeal_D");
+const HTMLtitle_M = document.querySelector(".morningTitle");
+const HTMLtitle_L = document.querySelector(".lunchTitle");
+const HTMLtitle_D = document.querySelector(".dinnerT");
+const HTMLmenuTitle = document.querySelector(".menuTitle");
+const morningButton = document.querySelector(".morningButton");
+const date = new Date();
 
   
 let API_DATE = "20210319",
@@ -25,13 +23,11 @@ let API_DATE = "20210319",
   calInfo_M = "",
   calInfo_L = 0,
   calInfo_D = 0,
-  ffieie = "REMOVED",
   API_MMEAL = "중식",
   koScName = '0',
   dayOfWeek = '',
   tomorrowButtonStatus = 0,
-  morningButtonStatus = "1",
-  afelijfs = ajfajdi+fjfjfjfei+sjlifj33+ffieie;
+  morningButtonStatus = "1";
 
 function getDateInfo(){
   if (date.getHours()<19){
@@ -67,93 +63,74 @@ function weekendCheck(date){
   }
 }
 
-function getMenuAPI(){
-  fetch(`https://open.neis.go.kr/hub/mealServiceDietInfo?KEY=${afelijfs}&Type=json&ATPT_OFCDC_SC_CODE=${API_EDUCODE}&SD_SCHUL_CODE=${API_SCHOOLCODE}&MMEAL_SC_NM=${API_MMEAL}&MLSV_YMD=${API_DATE}`)
-  .then(function(response){
-    return response.json();
-  })
-  .then(function(json){
-    try {
-		console.log(date.getDay());
-      schoolmealInfo_M = json.mealServiceDietInfo[1].row[0].DDISH_NM;
-      schoolmealInfo_L = json.mealServiceDietInfo[1].row[1].DDISH_NM;
-      schoolmealInfo_D = json.mealServiceDietInfo[1].row[2].DDISH_NM;
-      calInfo_M = json.mealServiceDietInfo[1].row[0].CAL_INFO;
-	    calInfo_L = json.mealServiceDietInfo[1].row[1].CAL_INFO;
-      //calInfo_D = json.mealServiceDietInfo[1].row[2].CAL_INFO;
-      HTMLtitle_L.innerHTML = `점심 | ${calInfo_L}`;
-		HTMLschoolmeal_D.innerHTML = ``;
-	  HTMLschoolmeal_L.innerHTML = schoolmealInfo_L;
-	    
-	  
-      //console.log(json.mealServiceDietInfo);
-	
-	  //HTMLtitle_M.innerHTML = `아침 | ${calInfo_M}`;
-	  HTMLtitle_D.innerHTML = `저녁 | ${json.mealServiceDietInfo[1].row[2].CAL_INFO}`;
-    console.log(json.mealServiceDietInfo[1].row[2].CAL_INFO);
-      //HTMLschoolmeal_M.innerHTML = schoolmealInfo_M;
-      HTMLschoolmeal_D.innerHTML = schoolmealInfo_D;
-      HTMLschoolmeal_M.innerHTML = schoolmealInfo_M;
-			HTMLtitle_M.innerHTML = `아침 | ${calInfo_M}`;
+async function getMenuAPI(){
+  const url = `${PROXY_URL}?date=${API_DATE}`;
+  
+  try {
+    const response = await fetch(url);
+    const json = await response.json();
+    
+    if (json.mealServiceDietInfo) {
+      const rows = json.mealServiceDietInfo[1].row;
+      
+      // Reset displays
+      HTMLschoolmeal_M.innerHTML = "";
+      HTMLschoolmeal_L.innerHTML = "정보 없음";
+      HTMLschoolmeal_D.innerHTML = "정보 없음";
 
+      rows.forEach(row => {
+        const mealType = row.MMEAL_SC_NM; // 조식, 중식, 석식
+        const menu = row.DDISH_NM;
+        const cal = row.CAL_INFO;
 
-		
-    } catch (e) {
-      if (weekendCheck(API_DATE)) {
-		  if(date.getDay() == 6){
-			HTMLschoolmeal_L.innerHTML = schoolmealInfo_L;
-			HTMLschoolmeal_D.innerHTML = '주말입니다!';
-			HTMLtitle_D.innerHTML = `저녁`;
-		  }	else {
-			HTMLschoolmeal_L.innerHTML = '주말입니다!';
-			HTMLschoolmeal_D.innerHTML = '주말입니다!';
-			schoolmealInfo_M.innerHTML = '주말입니다!';
-	    	HTMLtitle_M.innerHTML = `아침`;
-	    	HTMLtitle_L.innerHTML = `점심`;
-	    	HTMLtitle_D.innerHTML = `저녁`;
-		  }
-        
-      } else {
-        //HTMLschoolmeal_M.innerHTML = `${e.name}:<br>급식 정보를 불러오지 못했습니다 :(`;
-      }
+        if (mealType === "조식") {
+          schoolmealInfo_M = menu;
+          calInfo_M = cal;
+          HTMLschoolmeal_M.innerHTML = schoolmealInfo_M;
+          HTMLtitle_M.innerHTML = `아침 | ${calInfo_M}`;
+        } else if (mealType === "중식") {
+          schoolmealInfo_L = menu;
+          calInfo_L = cal;
+          HTMLschoolmeal_L.innerHTML = schoolmealInfo_L;
+          HTMLtitle_L.innerHTML = `점심 | ${calInfo_L}`;
+        } else if (mealType === "석식") {
+          schoolmealInfo_D = menu;
+          HTMLschoolmeal_D.innerHTML = schoolmealInfo_D;
+          HTMLtitle_D.innerHTML = `저녁 | ${row.CAL_INFO}`;
+        }
+      });
+    } else {
+      handleNoMeal();
     }
-	  //console.log(json.mealServiceDietInfo);
-  });
-
-  //cssDate.innerHTML = API_DATE;
+  } catch (e) {
+    handleNoMeal();
+  }
 }
 
-/*function showMorningMenu(){
-	morningButton.addEventListener('click', ()=>{
-		console.log(morningButtonStatus);
-		if (morningButtonStatus == 0){
-			morningButtonStatus = 1;
-			HTMLschoolmeal_M.innerHTML = schoolmealInfo_M;
-			HTMLtitle_M.innerHTML = `아침 | ${calInfo_M}`;
-		} else {
-			morningButtonStatus = 0;
-		    HTMLtitle_M.innerHTML = `아침`;
-			HTMLschoolmeal_M.innerHTML = "";
-		}
-	})*/
-  /*document.querySelector(".tomorrowButton").addEventListener('click', ()=>{
-    if (tomorrowButtonStatus == 0){
-      tomorrowButtonStatus = 1;
-      getDateInfo();
-      getMenuAPI();
+function handleNoMeal() {
+  if (weekendCheck(API_DATE)) {
+    if(date.getDay() == 6){
+      HTMLschoolmeal_L.innerHTML = "주말입니다!";
+      HTMLschoolmeal_D.innerHTML = '주말입니다!';
+      HTMLtitle_D.innerHTML = `저녁`;
     } else {
-      tomorrowButtonStatus = 0;
-      getDateInfo();
-      getMenuAPI();
+      HTMLschoolmeal_L.innerHTML = '주말입니다!';
+      HTMLschoolmeal_D.innerHTML = '주말입니다!';
+      HTMLschoolmeal_M.innerHTML = '주말입니다!';
+      HTMLtitle_M.innerHTML = `아침`;
+      HTMLtitle_L.innerHTML = `점심`;
+      HTMLtitle_D.innerHTML = `저녁`;
     }
-    console.log(tomorrowButtonStatus);
-  })*/
+  } else {
+    HTMLschoolmeal_L.innerHTML = "급식 정보가 없습니다.";
+    HTMLschoolmeal_D.innerHTML = "급식 정보가 없습니다.";
+  }
+}
 
 
 function init(){
   getDateInfo();
- getMenuAPI(); //디자인 작업을 위해 일시적 중단.ㄴ
-  //showMorningMenu();
+  getMenuAPI();
 }
 
 init();
